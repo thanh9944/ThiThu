@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include css %>
+
+</head>
+<body class="container">
+
+<script>
+</script>
+
+<% if(typeof alert != 'undefined') { %>
+    <% alert.forEach(function(error) { %>
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+                <%= error.msg %>
+            </div>
+        </div>
+    <% }) %>
+<% } %>
+
+<form method="post" action="/add" enctype="application/x-www-form-urlencoded">
+    <div class="row" style="width: 600px">
+        <p style="font-size: 20px">Id</p>
+        <input id="id" name="id" value="<%=locals.id ? id:''%>"  placeholder="Enter id">
+        <p style="font-size: 20px;margin-top: 10px">Email</p>
+        <input id="email" name="email" value="<%=locals.email ? email:''%>"  placeholder="Enter email">
+        <p style="font-size: 20px;margin-top: 10px">Address</p>
+        <input id="address" name="address" value="<%=locals.address ? address:''%>" placeholder="Enter address">
+        <p style="font-size: 20px;margin-top: 10px">Key</p>
+        <input id="key" type="number" name="key" value="<%=locals.key ? key:''%>" placeholder="Enter key">
+        <p style="font-size: 20px;margin-top: 10px">Date</p>
+        <input id="date" type="date" name="date" value="<%=locals.date ? date:''%>" placeholder="Enter date">
+        <button style="margin-top: 20px" type="submit">Add</button>
+    </div>
+</form>
+
+</body>
+</html>

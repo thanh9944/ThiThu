@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include css %>
+</head>
+<body class="container">
+
+<form  method="post" action="/update-sv" enctype="application/x-www-form-urlencoded">
+    <div class="row" style="width: 600px">
+        <p style="font-size: 20px">Id</p>
+        <input hidden  name="_id" value="<%=_id%>">
+        <input id="id" name="id" placeholder="Enter id" value="<%=id%>">
+        <p style="font-size: 20px;margin-top: 10px">Email</p>
+        <input id="email" name="email" placeholder="Enter email" value="<%=email%>">
+        <p style="font-size: 20px;margin-top: 10px">Address</p>
+        <input id="address" name="address" placeholder="Enter address" value="<%=address%>">
+        <p style="font-size: 20px;margin-top: 10px">Key</p>
+        <input id="key" name="key" placeholder="Enter key" value="<%=key%>">
+        <p style="font-size: 20px;margin-top: 10px">Date</p>
+        <input id="date" name="date" placeholder="Enter date" value="<%=date%>">
+        <button style="margin-top: 20px" type="submit">Update</button>
+    </div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include css %>
+</head>
+<body class="container">
+<form method="post" action="/find"
+      enctype="application/x-www-form-urlencoded">
+    <input name="ids" placeholder="find">
+    <button style="width: 70px" type="submit">Search</button>
+</form>
+<% if (typeof data != 'undefined'){ %>
+    <div class="row">
+        <% for (var i = 0; i < data.length; i++) { %>
+        <div class="col-sm-4" style="margin-top: 20px;margin-bottom: 20px">
+            <p>ID: <%= data[i].id %> </p>
+            <p>Email: <%= data[i].email %> </p>
+            <p>Address: <%= data[i].address %> </p>
+            <p>Key: <%= data[i].key %> </p>
+            <p>Date: <%= data[i].date %> </p>
+
+            <form method="post" action="/delete"
+                  enctype="application/x-www-form-urlencoded">
+                <input hidden name="_id" value="<%= data[i]._id %>">
+                <button style="width: 70px" type="submit">Delete</button>
+            </form>
+
+            <form  method="post" action="/update"
+                  enctype="application/x-www-form-urlencoded">
+                <input hidden name="_id" value="<%= data[i]._id %>">
+                <input hidden name="id" value="<%= data[i].id %>">
+                <input hidden name="email" value="<%= data[i].email %>">
+                <input hidden name="address" value="<%= data[i].address %>">
+                <input hidden name="key" value="<%= data[i].key %>">
+                <input hidden name="date" value="<%= data[i].date %>">
+                <button style="width: 70px" type="submit">Update</button>
+            </form>
+
+        </div>
+        <% } %>
+    </div>
+<% } %>
+
+</body>
+</html>
