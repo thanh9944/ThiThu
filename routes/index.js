@@ -25,29 +25,33 @@ router.get('/', function (req, res, next) {
     res.render('index');
 });
 
+router.get('/update', function (req, res, next) {
+    res.render('update');
+});
+
 router.get('/show', async function (req, res, next) {
     const sv = await Students.find({});
     res.render('show', {data: sv});
 });
 
 router.post('/add',
-        body('id', 'ko de trong id').not().isEmpty(),
-        body('email', 'ko de trong email').not().isEmpty(),
-        body('email', 'email ko hop le').isEmail(),
-        body('address', 'ko de trong address').not().isEmpty(),
-        body('key', 'ko de trong key').not().isEmpty(),
-        body('date', 'ko de trong date').not().isEmpty()
+    body('id', 'ko de trong id').not().isEmpty(),
+    body('email', 'ko de trong email').not().isEmpty(),
+    body('email', 'email ko hop le').isEmail(),
+    body('address', 'ko de trong address').not().isEmpty(),
+    body('key', 'ko de trong key').not().isEmpty(),
+    body('date', 'ko de trong date').not().isEmpty()
     , async function (req, res, next) {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
             const alert = errors.array()
             res.render('index', {
                 alert,
-                id:req.body.id,
-                email:req.body.email,
-                address:req.body.address,
-                key:req.body.key,
-                date:req.body.date
+                id: req.body.id,
+                email: req.body.email,
+                address: req.body.address,
+                key: req.body.key,
+                date: req.body.date
             })
         } else {
             const {id, email, address, key, date} = req.body
@@ -115,8 +119,11 @@ router.post('/update-sv', function (req, res, next) {
 });
 
 router.post('/find', async function (req, res, next) {
+    const data = await Students.find({});
+    console.log('DATA:'+data)
     const sv = await Students.find({id: req.body.ids})
     res.render('show', {data: sv});
+
 });
 
 module.exports = router;

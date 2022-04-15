@@ -4,11 +4,15 @@
     <% include css %>
 </head>
 <body class="container">
+<%-include nav%>
 <form method="post" action="/find"
       enctype="application/x-www-form-urlencoded">
-    <input name="ids" placeholder="find">
+    <input type="search" name="ids" placeholder="find">
     <button style="width: 70px" type="submit">Search</button>
 </form>
+
+<h1><%=locals.mss ? mss:''%></h1>
+
 <% if (typeof data != 'undefined'){ %>
     <div class="row">
         <% for (var i = 0; i < data.length; i++) { %>
