@@ -35,12 +35,13 @@ router.get('/show', async function (req, res, next) {
 });
 
 router.post('/add',
-    body('id', 'ko de trong id').not().isEmpty(),
-    body('email', 'ko de trong email').not().isEmpty(),
-    body('email', 'email ko hop le').isEmail(),
-    body('address', 'ko de trong address').not().isEmpty(),
-    body('key', 'ko de trong key').not().isEmpty(),
-    body('date', 'ko de trong date').not().isEmpty()
+    body('id', 'ko de trong id').notEmpty(),
+    body('address', 'ko de trong address').notEmpty(),
+    body('email', 'ko de trong email').notEmpty(),
+    body('email', 'email phai hop le').isEmail(),
+    body('key', 'ko de trong key ').notEmpty(),
+    body('key', 'key <2 >7').isLength({min:2,max:7}),
+    body('date', 'ko de trong date va date phai la dd/mm/yyyy').notEmpty()
     , async function (req, res, next) {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
@@ -67,27 +68,6 @@ router.post('/add',
                 res.redirect('/show')
             })
         }
-
-
-        // const {id,email,address,key,date}=req.body
-        // if (id === "") {
-        //     res.render('index')
-        // } else if (email === '') {
-        //     res.render('index')
-        // } else {
-        //     const newSV = new Students({
-        //         id: id,
-        //         email: email,
-        //         address: address,
-        //         key: key,
-        //         date: date
-        //     })
-        //
-        //     await newSV.save(function (err) {
-        //         res.redirect('/show')
-        //     })
-        // }
-
 
     });
 
@@ -119,11 +99,9 @@ router.post('/update-sv', function (req, res, next) {
 });
 
 router.post('/find', async function (req, res, next) {
-    const data = await Students.find({});
-    console.log('DATA:'+data)
-    const sv = await Students.find({id: req.body.ids})
+    const id = req.body.ids
+    const sv = await Students.find({id: id})
     res.render('show', {data: sv});
-
 });
 
 module.exports = router;
