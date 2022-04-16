@@ -13,8 +13,8 @@
                     <a style="color: #0ba1dc" class="nav-link active" aria-current="page" href="/update">Update</a>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" method="post" action="/find" enctype="application/x-www-form-urlencoded">
+                <input class="form-control me-2" type="search" name="ids" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
